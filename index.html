@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ののゆりファーム | 野菜の生産 & Klutch Agri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #1e3a2f;
+      --green-mid:   #2d5c45;
+      --green-light: #4a8c68;
+      --green-pale:  #d6ead9;
+      --cream:       #f7f4ef;
+      --stone:       #e8e2d9;
+      --text-dark:   #1a1a18;
+      --text-mid:    #4a4a45;
+      --text-light:  #8a8a82;
+      --white:       #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', 'Noto Serif JP', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--stone);
+    }
+    .nav-logo {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--green-dark); letter-spacing: .05em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: .88rem; font-weight: 400;
+      color: var(--text-mid); letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--green-mid); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-left {
+      background: var(--green-dark);
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 5rem 4rem 5rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-left::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 80%, rgba(74,140,104,.35) 0%, transparent 60%);
+    }
+    .hero-eyebrow {
+      font-size: .75rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--green-pale); margin-bottom: 1.5rem; font-weight: 400;
+      position: relative;
+    }
+    .hero-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 400; line-height: 1.25;
+      color: var(--white); margin-bottom: 1.8rem;
+      position: relative;
+    }
+    .hero-title span { color: var(--green-pale); }
+    .hero-desc {
+      font-size: 1rem; line-height: 1.8;
+      color: rgba(255,255,255,.7); max-width: 380px;
+      position: relative;
+    }
+    .hero-right {
+      background: var(--stone);
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 3rem;
+      position: relative; overflow: hidden;
+    }
+    /* placeholder farm image area */
+    .hero-img-placeholder {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #b8d4be 0%, #7aab8a 40%, #3d7a55 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-img-placeholder svg { opacity: .15; width: 60%; height: auto; }
+    .hero-badge {
+      position: relative; z-index: 2;
+      background: var(--white); border-radius: 12px;
+      padding: 1.4rem 1.8rem;
+      display: inline-flex; flex-direction: column; gap: .4rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    }
+    .hero-badge-label { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); }
+    .hero-badge-val { font-family: 'Shippori Mincho', serif; font-size: 1.3rem; color: var(--green-dark); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 7rem 5rem; }
+    .section-label {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--green-light); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 400; line-height: 1.3;
+      color: var(--green-dark); margin-bottom: 1.5rem;
+    }
+    .section-body {
+      font-size: 1rem; line-height: 1.9;
+      color: var(--text-mid); max-width: 560px;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+    .about-visual {
+      aspect-ratio: 4/5;
+      background: linear-gradient(145deg, var(--green-pale) 0%, #a8ccb2 100%);
+      border-radius: 4px; position: relative; overflow: hidden;
+    }
+    .about-visual::after {
+      content: '野'; position: absolute;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 16rem; line-height: 1;
+      color: rgba(255,255,255,.15);
+      bottom: -2rem; right: -2rem;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--cream); }
+    .services-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; margin-top: 3.5rem;
+    }
+    .service-card {
+      border-radius: 4px; overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--stone);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+    .service-card-img {
+      height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; position: relative; overflow: hidden;
+    }
+    .card-farm .service-card-img { background: linear-gradient(145deg, #c8dfc9 0%, #7aab8a 100%); }
+    .card-saas .service-card-img { background: linear-gradient(145deg, #c5d8e8 0%, #5a8fbb 100%); }
+    .service-card-body { padding: 2rem; }
+    .service-card-tag {
+      font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--green-light); margin-bottom: .6rem;
+    }
+    .service-card-title {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.5rem; color: var(--green-dark); margin-bottom: .8rem;
+    }
+    .service-card-desc { font-size: .92rem; line-height: 1.8; color: var(--text-mid); }
+    .btn {
+      display: inline-block; margin-top: 1.5rem;
+      padding: .75rem 1.8rem;
+      font-size: .85rem; letter-spacing: .06em;
+      text-decoration: none; border-radius: 2px;
+      transition: background .2s, color .2s;
+    }
+    .btn-dark {
+      background: var(--green-dark); color: var(--white);
+    }
+    .btn-dark:hover { background: var(--green-mid); }
+    .btn-outline {
+      border: 1.5px solid var(--green-dark); color: var(--green-dark);
+    }
+    .btn-outline:hover { background: var(--green-dark); color: var(--white); }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--green-dark); padding: 7rem 5rem; }
+    #gallery .section-label { color: var(--green-pale); }
+    #gallery .section-title { color: var(--white); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 200px 200px;
+      gap: 1rem; margin-top: 3rem;
+    }
+    .gallery-item {
+      border-radius: 3px; overflow: hidden;
+      background: var(--green-mid);
+      position: relative;
+      transition: transform .3s;
+    }
+    .gallery-item:hover { transform: scale(1.02); z-index: 2; }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .gallery-item span {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; opacity: .4;
+    }
+    .gallery-item:nth-child(2) { background: #3a6e50; }
+    .gallery-item:nth-child(3) { background: #2e5a42; }
+    .gallery-item:nth-child(4) { background: #4a7a5e; }
+    .gallery-item:nth-child(5) { background: #366050; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream); }
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+    }
+    .form-group { margin-bottom: 1.4rem; }
+    label {
+      display: block; font-size: .8rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-mid);
+      margin-bottom: .5rem;
+    }
+    input, textarea, select {
+      width: 100%; padding: .9rem 1rem;
+      border: 1px solid var(--stone); border-radius: 2px;
+      background: var(--white); color: var(--text-dark);
+      font-family: inherit; font-size: .95rem;
+      transition: border-color .2s;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--green-light); }
+    textarea { min-height: 140px; resize: vertical; }
+    .btn-submit {
+      width: 100%; padding: 1rem;
+      background: var(--green-dark); color: var(--white);
+      border: none; border-radius: 2px;
+      font-family: inherit; font-size: .95rem; letter-spacing: .06em;
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-submit:hover { background: var(--green-mid); }
+    .contact-info h3 {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.5rem; color: var(--green-dark); margin-bottom: 1rem;
+    }
+    .contact-info p { font-size: .95rem; line-height: 1.9; color: var(--text-mid); margin-bottom: 2rem; }
+    .sns-links { display: flex; flex-direction: column; gap: .8rem; }
+    .sns-link {
+      display: flex; align-items: center; gap: .8rem;
+      text-decoration: none; color: var(--text-mid);
+      font-size: .92rem; transition: color .2s;
+    }
+    .sns-link:hover { color: var(--green-dark); }
+    .sns-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--stone); display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-dark); color: rgba(255,255,255,.5);
+      padding: 2.5rem 5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: .82rem; letter-spacing: .05em;
+    }
+    .footer-logo {
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1rem; color: var(--white);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .7s ease both; }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .22s; }
+    .delay-3 { animation-delay: .36s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { height: 320px; }
+      section { padding: 5rem 1.8rem; }
+      #about, .services-grid, .contact-inner { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child { grid-column: span 2; }
+      footer { flex-direction: column; gap: .8rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">ののゆりファーム</a>
+    <ul class="nav-links">
+      <li><a href="#about">私たちについて</a></li>
+      <li><a href="#services">事業内容</a></li>
+      <li><a href="#gallery">ギャラリー</a></li>
+      <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow fade-up">Noyuri Farm — Est. 2024</p>
+      <h1 class="hero-title fade-up delay-1">
+        大地から生まれる<br>
+        <span>豊かな実り</span>と<br>
+        未来の農業技術
+      </h1>
+      <p class="hero-desc fade-up delay-2">
+        野菜の生産とSaaSの開発。<br>
+        ののゆりファームは、自然の恵みとテクノロジーで農業の新しいかたちをつくります。
+      </p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-placeholder">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 20 Q120 60 100 100 Q80 60 100 20Z" fill="white"/>
+          <path d="M60 80 Q100 60 140 80 Q100 120 60 80Z" fill="white"/>
+          <path d="M40 140 Q100 100 160 140 Q100 180 40 140Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="hero-badge fade-up delay-3">
+        <span class="hero-badge-label">事業領域</span>
+        <span class="hero-badge-val">野菜の生産 &amp; Klutch Agri</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-visual"></div>
+    <div>
+      <p class="section-label">About Us</p>
+      <h2 class="section-title">ののゆりファームについて</h2>
+      <p class="section-body">
+        ののゆりファームは、新鮮な野菜の生産と、農業をより豊かにするSaaSプロダクト「Klutch Agri」の開発・販売を手がける個人事業主です。<br><br>
+        土に向き合いながらも、テクノロジーで農業の課題を解決することを目指しています。自然と技術、この二つを融合させた新しい農業のかたちを提案します。
+      </p>
+      <a href="#contact" class="btn btn-outline" style="margin-top:2rem;">お問い合わせはこちら</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">Services</p>
+    <h2 class="section-title">事業内容</h2>
+    <div class="services-grid">
+      <!-- SaaS -->
+      <div class="service-card card-saas">
+        <div class="service-card-img">🌾</div>
+        <div class="service-card-body">
+          <p class="service-card-tag">SaaS Product</p>
+          <h3 class="service-card-title">Klutch Agri</h3>
+          <p class="service-card-desc">
+            農業経営をスマートにするSaaSプロダクト。圃場管理から収支管理まで、農家の日々の業務をデジタルでサポートします。
+          </p>
+          <a href="#contact" class="btn btn-dark">詳しく問い合わせる</a>
+        </div>
+      </div>
+      <!-- 野菜 -->
+      <div class="service-card card-farm">
+        <div class="service-card-img">🥦</div>
+        <div class="service-card-body">
+          <p class="service-card-tag">Vegetable Production</p>
+          <h3 class="service-card-title">野菜の生産</h3>
+          <p class="service-card-desc">
+            こだわりの農法で育てた新鮮な野菜をお届けします。安全・安心な農産物を丁寧に栽培し、食卓に届けることを大切にしています。
+          </p>
+          <a href="#gallery" class="btn btn-outline">ギャラリーを見る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <p class="section-label">Gallery</p>
+    <h2 class="section-title">農場の風景</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><span>🌿</span></div>
+      <div class="gallery-item"><span>🥬</span></div>
+      <div class="gallery-item"><span>🌱</span></div>
+      <div class="gallery-item"><span>🫑</span></div>
+      <div class="gallery-item"><span>🥕</span></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">お問い合わせ</h2>
+    <div class="contact-inner">
+      <!-- FORM -->
+      <form onsubmit="return false;">
+        <div class="form-group">
+          <label for="name">お名前</label>
+          <input type="text" id="name" placeholder="山田 太郎" />
+        </div>
+        <div class="form-group">
+          <label for="email">メールアドレス</label>
+          <input type="email" id="email" placeholder="example@mail.com" />
+        </div>
+        <div class="form-group">
+          <label for="category">お問い合わせ種別</label>
+          <select id="category">
+            <option value="">選択してください</option>
+            <option value="farm">野菜の購入・生産について</option>
+            <option value="saas">Klutch Agri について</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">メッセージ</label>
+          <textarea id="message" placeholder="お気軽にご連絡ください"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">送信する</button>
+      </form>
+
+      <!-- INFO -->
+      <div class="contact-info">
+        <h3>SNS・各種リンク</h3>
+        <p>お気軽にフォロー・DMもどうぞ。最新情報を発信しています。</p>
+        <div class="sns-links">
+          <a href="#" class="sns-link">
+            <span class="sns-icon">📸</span> Instagram @noyurifarm
+          </a>
+          <a href="#" class="sns-link">
+            <span class="sns-icon">𝕏</span> X (Twitter) @noyurifarm
+          </a>
+          <a href="#" class="sns-link">
+            <span class="sns-icon">🌾</span> Klutch Agri 公式サイト
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">ののゆりファーム</span>
+    <span>© 2024 Noyuri Farm. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>
