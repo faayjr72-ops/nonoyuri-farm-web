@@ -711,71 +711,249 @@
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav {
-        padding: 1rem 1.5rem;
-      }
+   @media (max-width: 900px) {
+  nav {
+    padding: 1rem 1.2rem;
+  }
 
-      .nav-links {
-        display: none;
-      }
+  .nav-links {
+    display: none;
+  }
 
-      #hero {
-        grid-template-columns: 1fr;
-      }
+  /* 全体余白を少し詰める */
+  section {
+    padding: 4rem 1.2rem;
+  }
 
-      .hero-right {
-        height: 320px;
-      }
+  /* HERO */
+  #hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 72px;
+  }
 
-      section {
-        padding: 5rem 1.8rem;
-      }
+  .hero-left {
+    padding: 3.2rem 1.4rem 2.4rem;
+  }
 
-      #about,
-      .services-grid,
-      .contact-inner,
-      .saas-feature-grid,
-      .saas-points {
-        grid-template-columns: 1fr;
-      }
+  .hero-right {
+    height: 240px;
+    padding: 0;
+  }
 
-      .saas-feature-card-large {
-        grid-column: span 1;
-        grid-template-columns: 1fr;
-      }
+  .hero-title {
+    font-size: clamp(2rem, 9vw, 2.7rem);
+    line-height: 1.45;
+    max-width: 100%;
+    margin-bottom: 1.2rem;
+    line-break: auto;
+  }
 
-      .saas-feature-image {
-        height: 240px;
-      }
+  .hero-eyebrow {
+    margin-bottom: 1rem;
+    font-size: .72rem;
+    letter-spacing: .14em;
+  }
 
-      .saas-feature-card-flow .saas-feature-image {
-        height: auto;
-      }
+  .hero-desc-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 100%;
+  }
 
-      .saas-feature-card-flow .saas-feature-image img {
-        height: auto;
-      }
+  .hero-desc {
+    font-size: .95rem;
+    line-height: 1.9;
+    width: 100%;
+  }
 
-      .saas-proof {
-        padding: 1.4rem;
-      }
+  .hero-icon {
+    width: 64px;
+    height: 64px;
+  }
 
-      .saas-proof-actions {
-        flex-direction: column;
-      }
+  /* ABOUT / SERVICES / CONTACT */
+  #about,
+  .services-grid,
+  .contact-inner,
+  .saas-feature-grid,
+  .saas-points {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
 
-      .saas-proof-actions .btn {
-        width: 100%;
-        text-align: center;
-      }
+  .section-title {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+    line-height: 1.45;
+    margin-bottom: 1rem;
+  }
 
-      footer {
-        flex-direction: column;
-        gap: .8rem;
-        text-align: center;
-      }
-    }
+  .section-body,
+  .section-body-light,
+  #contact p {
+    font-size: .95rem;
+    line-height: 1.9;
+    max-width: 100%;
+  }
+
+  .about-visual {
+    aspect-ratio: 4 / 3;
+  }
+
+  .service-card-img {
+    height: 190px;
+  }
+
+  .service-card-body {
+    padding: 1.4rem;
+  }
+
+  .service-card-title {
+    font-size: 1.25rem;
+  }
+
+  .service-card-desc {
+    font-size: .92rem;
+    line-height: 1.8;
+  }
+
+  /* GALLERY */
+  #gallery {
+    padding: 4rem 1.2rem;
+  }
+
+  .saas-feature-card-large {
+    grid-column: span 1;
+    grid-template-columns: 1fr;
+  }
+
+  .saas-feature-card {
+    border-radius: 4px;
+  }
+
+  .saas-feature-image {
+    height: auto;
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .saas-feature-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
+    display: block;
+  }
+
+  .saas-feature-card-flow .saas-feature-image {
+    height: auto;
+    overflow: visible;
+  }
+
+  .saas-feature-card-flow .saas-feature-image img {
+    height: auto;
+  }
+
+  .saas-feature-body {
+    padding: 1.2rem;
+  }
+
+  .saas-feature-title {
+    font-size: 1.2rem;
+    line-height: 1.55;
+  }
+
+  .saas-feature-desc {
+    font-size: .92rem;
+    line-height: 1.8;
+  }
+
+  .saas-points {
+    margin-top: 1.4rem;
+  }
+
+  .saas-point {
+    padding: 1.2rem 1rem;
+  }
+
+  .saas-point h3 {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+  }
+
+  .saas-point p {
+    font-size: .9rem;
+    line-height: 1.75;
+  }
+
+  .saas-proof {
+    margin-top: 2rem;
+    padding: 1.2rem 1rem;
+  }
+
+  .saas-proof-title {
+    font-size: 1.35rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+
+  .saas-proof-item {
+    gap: .8rem;
+    padding: .85rem 0;
+  }
+
+  .saas-proof-badge {
+    width: 32px;
+    height: 32px;
+    font-size: .72rem;
+  }
+
+  .saas-proof-item h4 {
+    font-size: .96rem;
+    line-height: 1.5;
+  }
+
+  .saas-proof-item p {
+    font-size: .9rem;
+    line-height: 1.75;
+  }
+
+  .saas-proof-actions {
+    flex-direction: column;
+    gap: .8rem;
+    margin-top: 1.2rem;
+  }
+
+  .saas-proof-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    gap: 2rem;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  .btn-submit {
+    font-size: .95rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 1.4rem 1.2rem;
+    flex-direction: column;
+    gap: .8rem;
+    text-align: center;
+    line-height: 1.7;
+  }
+}
   </style>
 </head>
 <body>
